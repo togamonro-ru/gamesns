@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+</head>
+<body>
+<h1>新規登録</h1>
+<form name="myForm" autocomplete="off">
+<table>
+    <tr>
+        <th>名前</th>
+        <td><input type="text" name="user_name"></td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td><input type="email" name="email"></td>
+    </tr>
+    <tr>
+        <th>パスワード</th>
+        <td><input type="password" name="password"></td>
+    </tr>
+    <tr><td colspan="2"><input type="submit"></td></tr>
+</table>
+</form>
+<script>
+    let myForm = document.forms.myForm;
+
+    myForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        let formData = new FormData(myForm);
+
+        insertPeopleTable(formData);
+    });
+
+    function insertPeopleTable(formData) {
+        const path = 'php/insert.php'; 
+        fetch(path, {
+            method: 'POST',
+            body: formData,
+        })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then((data) => {
+            if (data.status === 'success') {
+                clearForm();
+                alert("登録が成功しました！");
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function clearForm() {
+        myForm.reset();
+    }
+</script>
+
+<button onclick="window.location.href='login.html'">ログイン</button>
+
+</body>
+</html>
