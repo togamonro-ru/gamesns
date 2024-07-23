@@ -34,5 +34,6 @@ if (!empty($profile['profile_image'])) {
 
 echo "<br><img src='{$profile_image}' alt='プロフィール画像' style='width:50px; height:50px; border-radius:50%;'>";
 echo "<br><a href='./profile.php'>プロフィールを表示/編集</a>";
+echo "<br><a href='./group_chats.php'>グループチャット</a>";
 
 ?>
