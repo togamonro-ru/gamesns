@@ -46,20 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_name = basename($_FILES['profile_image']['name']);
         $profile_image_path = $upload_dir . $file_name;
 
-        // デバッグ用
-        echo "tmp_name: " . $tmp_name . "<br>";
-        echo "file_name: " . $file_name . "<br>";
-        echo "profile_image_path: " . $profile_image_path . "<br>";
-
         if (move_uploaded_file($tmp_name, $profile_image_path)) {
             // 画像がアップロードされた場合は、パスを更新
             $profile_image = $profile_image_path;
-            echo "画像のアップロードに成功しました。<br>";
-        } else {
-            echo "画像のアップロードに失敗しました。<br>";
         }
-    } else {
-        echo "ファイルアップロードエラー: " . $_FILES['profile_image']['error'] . "<br>";
     }
     
     if ($profile['display_name'] !== '') {
@@ -77,17 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'bio' => $bio, 
         'profile_image' => $profile_image
     ]);
-
+    
     if ($success) {
-        echo "データベースの更新に成功しました。<br>";
+        header("Location: welcome.php");
+        exit();
     } else {
         echo "データベースの更新に失敗しました。<br>";
         print_r($stmt->errorInfo()); // SQLエラーの詳細を表示
     }
-    
-    // リダイレクトはデバッグが完了してから有効化
-    // header("Location: profile.php");
-    // exit();
 }
 ?>
 
@@ -97,24 +84,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>プロフィール編集</title>
+    <link rel="stylesheet" href="../css/style_2.css"> <!-- CSSのリンク -->
 </head>
 <body>
-    <h1>プロフィール編集</h1>
+    <a href="welcome.php" class="back-button">戻る</a> <!-- 戻るボタン -->
     <form action="profile.php" method="POST" enctype="multipart/form-data">
-        <label for="display_name">表示名:</label>
-        <input type="text" id="display_name" name="display_name" value="<?php echo htmlspecialchars($profile['display_name'], ENT_QUOTES, 'UTF-8'); ?>" required><br><br>
-        
-        <label for="bio">自己紹介:</label>
-        <textarea id="bio" name="bio" rows="4" cols="50" required><?php echo htmlspecialchars($profile['bio'], ENT_QUOTES, 'UTF-8'); ?></textarea><br><br>
-        
-        <label for="profile_image">プロフィール画像:</label>
-        <input type="file" id="profile_image" name="profile_image"><br><br>
-        <?php if (!empty($profile['profile_image'])): ?>
-            <img src="<?php echo htmlspecialchars($profile['profile_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="プロフィール画像" style="max-width: 200px;"><br><br>
-        <?php endif; ?>
-        
-        <input type="submit" value="保存">
+        <h1>プロフィール編集</h1>
+        <div class="form-group">
+            <label for="display_name">表示名:</label>
+            <input type="text" id="display_name" name="display_name" value="<?php echo htmlspecialchars($profile['display_name'], ENT_QUOTES, 'UTF-8'); ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="bio">自己紹介:</label>
+            <textarea id="bio" name="bio" rows="6" cols="50" required><?php echo htmlspecialchars($profile['bio'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="profile_image">プロフィール画像:</label>
+            <input type="file" id="profile_image" name="profile_image">
+            <?php if (!empty($profile['profile_image'])): ?>
+                <img src="<?php echo htmlspecialchars($profile['profile_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="プロフィール画像" style="max-width: 200px;">
+            <?php endif; ?>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="保存" class="submit-button">
+        </div>
     </form>
-    <br><a href="welcome.php">戻る</a>
 </body>
 </html>
