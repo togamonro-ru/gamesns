@@ -1,0 +1,20 @@
+/* その他のCSSスタイル */
+
+/* テキストと画像を横並びにするスタイル */
+.text-with-images {
+    display: flex;
+    align-items: center; /* 画像とテキストの縦位置を揃える */
+    justify-content: center; /* コンテンツを中央揃え */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column; /* h1とpを縦に並べる */
+    align-items: center; /* テキストを中央揃え */
+    margin: 0 40px; /* 画像とテキストの間にスペースを追加 */
+}
+
+.side-image {
+    width: 150px; /* 画像の幅を調整 */
+    height: auto; /* 高さは自動で調整 */
+}
