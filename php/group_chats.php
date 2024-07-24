@@ -134,6 +134,30 @@ if (isset($_GET['chat_id'])) {
     }
 }
 
+
+// Accept chat invitation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accept_invitation'])) {
+    $invitation_id = $_POST['invitation_id'];
+    
+    $sql_accept_invitation = "UPDATE chat_invitations SET status = 'accepted' WHERE invitation_id = :invitation_id";
+    $stmt_accept_invitation = $pdo->prepare($sql_accept_invitation);
+    $stmt_accept_invitation->execute(['invitation_id' => $invitation_id]);
+
+    header("Location: group_chats.php");
+    exit();
+}
+
+// Reject chat invitation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reject_invitation'])) {
+    $invitation_id = $_POST['invitation_id'];
+    
+    $sql_reject_invitation = "DELETE FROM chat_invitations WHERE invitation_id = :invitation_id";
+    $stmt_reject_invitation = $pdo->prepare($sql_reject_invitation);
+    $stmt_reject_invitation->execute(['invitation_id' => $invitation_id]);
+
+    header("Location: group_chats.php");
+    exit();
+}
 // Fetch pending invitations
 $sql_pending_invitations = "SELECT ci.*, gc.chat_name, u.user_name AS inviter_name 
                             FROM chat_invitations ci
@@ -229,6 +253,10 @@ if (!empty($pending_invitations)) {
         <form method='POST' action='group_chats.php' style='display:inline;'>
             <input type='hidden' name='invitation_id' value='" . htmlspecialchars($invitation['invitation_id'], ENT_QUOTES, 'UTF-8') . "'>
             <button type='submit' name='accept_invitation'>参加</button>
+        </form>
+        <form method='POST' action='group_chats.php' style='display:inline;'>
+            <input type='hidden' name='invitation_id' value='" . htmlspecialchars($invitation['invitation_id'], ENT_QUOTES, 'UTF-8') . "'>
+            <button type='submit' name='reject_invitation'>拒否</button>
         </form>
         </li>";
     }
