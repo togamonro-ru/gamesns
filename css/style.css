@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(42, 42, 42);
+    overflow: hidden;
+}
+
+.border{
+    padding: 20px;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    animation: rainbow 10s linear infinite;
+    height: 588px;
+}
+
+@keyframes rainbow {
+    0% { border-image-source: linear-gradient(90deg, red, red, red, red, red, red, red); }
+    14.29% { border-image-source: linear-gradient(90deg, red, orange, orange, orange, orange, orange, orange); }
+    28.58% { border-image-source: linear-gradient(90deg, orange, yellow, yellow, yellow, yellow, yellow, yellow); }
+    42.87% { border-image-source: linear-gradient(90deg, yellow, green, green, green, green, green, green); }
+    57.16% { border-image-source: linear-gradient(90deg, green, blue, blue, blue, blue, blue, blue); }
+    71.45% { border-image-source: linear-gradient(90deg, blue, indigo, indigo, indigo, indigo, indigo, indigo); }
+    85.74% { border-image-source: linear-gradient(90deg, indigo, violet, violet, violet, violet, violet, violet); }
+    100% { border-image-source: linear-gradient(90deg, violet, red, red, red, red, red, red); }
+}
+
+header{
+    border-bottom: 2px solid #ffffff;
+    width: 100%;
+}
+
+nav{
+    margin-bottom: 30px;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+li{
+    list-style: none;
+}
+
+.links{
+    color: white;
+    font-size: 30px;
+}
+
+input{
+    height: 24px;
+}
+
+.search-btn{
+    height: 30px;
+}
+
+main{
+    height: 500px;
+    overflow: auto;
+}
+
+main::-webkit-scrollbar{
+    display:none;
+  }
+
+.post {
+    background-color: #333; /* 背景色を暗く設定 */
+    color: #fff; /* テキストの色を白に設定 */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc; /* グレーの円を作成 */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    flex-grow: 1;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #999;
+}
+
+.post-content {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.icon img {
+    width: 16px; /* 画像のサイズを指定 */
+    height: 16px;
+    margin-right: 5px;
+}
+
+.post_linkbtn{
+    position: absolute;
+    bottom: 70px;
+    right: 40px;
+    border: 3px solid #FF00D6;
+    background-color: #ffffff;
+    font-size: 20px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.post-image{
+    text-align: center;
+    margin: 20px;
+}
