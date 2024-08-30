@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/style_2.css"> <!-- CSSのリンク -->
 </head>
 <body>
-    <a href="welcome.php" class="back-button">戻る</a> <!-- 戻るボタン -->
+    <a href="../top.html" class="back-button">戻る</a> <!-- 戻るボタン -->
     <form action="profile.php" method="POST" enctype="multipart/form-data">
         <h1>プロフィール編集</h1>
         <div class="form-group">

@@ -24,8 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Set session variables for the logged-in user
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_name'] = $user['user_name'];
+<<<<<<< HEAD
+            
+            header("Location: ../top.html");
+=======
 
             header("Location: welcome.php");
+>>>>>>> f63642d1534866bfaad4f41057068b72112d1f70
             exit();
         }
     } else {
