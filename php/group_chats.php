@@ -25,7 +25,7 @@ $chats = $stmt_chats->fetchAll(PDO::FETCH_ASSOC);
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['chat_name'])) {
     $chat_name = $_POST['chat_name'];
     $chat_details = $_POST['chat_details'];
-    
+
     $sql_create_chat = "INSERT INTO group_chats (chat_name, chat_details, user_id, created_at, updated_at) 
                         VALUES (:chat_name, :chat_details, :user_id, NOW(), NOW())";
     $stmt_create_chat = $pdo->prepare($sql_create_chat);
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['chat_name'])) {
         'user_id' => $user_id
     ]);
     $chat_id = $pdo->lastInsertId();
-    
+
     // Add the creator to the chat
     $sql_invite_creator = "INSERT INTO chat_invitations (chat_id, invited_user_id, inviter_user_id, status, created_at, updated_at) 
                            VALUES (:chat_id, :invited_user_id, :inviter_user_id, 'accepted', NOW(), NOW())";
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['chat_name'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invite_user_id'])) {
     $chat_id = $_POST['chat_id'];
     $invite_user_id = $_POST['invite_user_id'];
-    
+
     $sql_invite_user = "INSERT INTO chat_invitations (chat_id, invited_user_id, inviter_user_id, status, created_at, updated_at) 
                         VALUES (:chat_id, :invited_user_id, :inviter_user_id, 'pending', NOW(), NOW())";
     $stmt_invite_user = $pdo->prepare($sql_invite_user);
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['invite_user_id'])) {
 // Accept chat invitation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accept_invitation'])) {
     $invitation_id = $_POST['invitation_id'];
-    
+
     $sql_accept_invitation = "UPDATE chat_invitations SET status = 'accepted' WHERE invitation_id = :invitation_id";
     $stmt_accept_invitation = $pdo->prepare($sql_accept_invitation);
     $stmt_accept_invitation->execute(['invitation_id' => $invitation_id]);
@@ -177,8 +177,86 @@ $stmt_exclude_users = $pdo->prepare($sql_exclude_users);
 $stmt_exclude_users->execute(['chat_id' => $chat_id, 'chat_id2' => $chat_id, 'user_id' => $user_id]);
 $available_users = $stmt_exclude_users->fetchAll(PDO::FETCH_ASSOC);
 
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グループチャット</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+         body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #000; /* Black background for the page */
+    color: #fff; /* White text color for better contrast */
+}
+
+h2, h3 {
+    margin-top: 20px;
+    color: #00f; /* Blue color for headings */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    background-color: #333; /* Dark background for textarea */
+    color: #fff; /* White text color for textarea */
+    border: 1px solid #00f; /* Blue border for textarea */
+}
+
+select, input[type="text"], button {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    background-color: #333; /* Dark background for select and input */
+    color: #fff; /* White text color for select and input */
+    border: 1px solid #00f; /* Blue border for select and input */
+}
+
+button {
+    background-color: #00f; /* Blue background for buttons */
+    color: #fff; /* White text color for buttons */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #00bfff; /* Lighter blue on hover */
+}
+
+a {
+    color: #00f; /* Blue color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline links on hover */
+}
+        
+    </style>
+</head>
+<body>
+
+<?php
 // Display chat list
-echo "グループチャット一覧:";
+echo "<h2>グループチャット一覧</h2>";
 echo "<ul>";
 foreach ($chats as $chat_item) {
     echo "<li><a href='group_chats.php?chat_id=" . htmlspecialchars($chat_item['chat_id'], ENT_QUOTES, 'UTF-8') . "'>" . htmlspecialchars($chat_item['chat_name'], ENT_QUOTES, 'UTF-8') . "</a></li>";
@@ -189,7 +267,7 @@ echo "</ul>";
 if ($chat_id !== null) {
     echo "<h2>チャット名: " . htmlspecialchars($chat['chat_name'], ENT_QUOTES, 'UTF-8') . "</h2>";
     echo "<h3>チャット詳細: " . htmlspecialchars($chat['chat_details'], ENT_QUOTES, 'UTF-8') . "</h3>";
-    
+
     echo "<h3>チャットメッセージ:</h3>";
     echo "<ul id='chat_messages'>";
     foreach ($messages as $message) {
@@ -243,6 +321,10 @@ echo "
 </form>
 ";
 
+
+
+
+
 // Pending invitations
 if (!empty($pending_invitations)) {
     echo "<h3>保留中の招待</h3>";
@@ -287,7 +369,7 @@ document.getElementById('submit_message').addEventListener('click', function() {
         if (data.success) {
             var newMessage = document.createElement('li');
             var formattedTime = new Date(data.created_at).toLocaleString(); // Format the timestamp
-            
+
             newMessage.innerHTML = "<strong>" + data.user_name + ":</strong> " + data.message + " <small>(" + formattedTime + ")</small>";
             chatMessages.appendChild(newMessage);
             messageInput.value = '';
@@ -300,3 +382,6 @@ document.getElementById('submit_message').addEventListener('click', function() {
     });
 });
 </script>
+
+</body>
+</html>
