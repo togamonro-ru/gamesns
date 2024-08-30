@@ -264,7 +264,7 @@ if (!empty($pending_invitations)) {
 }
 
 echo "
-<a href='welcome.php'>戻る</a>
+<a href='../top.html'>戻る</a>
 ";
 
 ?>
