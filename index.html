@@ -24,6 +24,7 @@
         <div class="form-group">
             <input type="submit" value="登録">
         </div>
+        <div id="error-message" style="color: red;"></div> <!-- エラーメッセージ表示エリア -->
     </form>
     <button class="login-button" onclick="window.location.href='login.html'">ログイン</button>
     <script>
@@ -53,15 +54,20 @@
                 if (data.status === 'success') {
                     clearForm();
                     alert("登録が成功しました！");
+                    window.location.href = 'login.html'; // ログインページにリダイレクト
+                } else if (data.status === 'error') {
+                    document.getElementById('error-message').innerText = data.message; // エラーメッセージの表示
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                document.getElementById('error-message').innerText = 'エラーが発生しました。もう一度お試しください。'; // エラーメッセージの表示
             });
         }
 
         function clearForm() {
             myForm.reset();
+            document.getElementById('error-message').innerText = ''; // エラーメッセージのクリア
         }
     </script>
 </body>
