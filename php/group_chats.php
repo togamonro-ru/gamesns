@@ -321,6 +321,10 @@ echo "
 </form>
 ";
 
+
+
+
+
 // Pending invitations
 if (!empty($pending_invitations)) {
     echo "<h3>保留中の招待</h3>";
