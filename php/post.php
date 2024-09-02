@@ -11,6 +11,7 @@ header('Content-Type: application/json');
 
 $user_id = $_SESSION['user_id'];
 $title_id = 1;
+$images = "";
 
 $sql = 'INSERT INTO posts (user_id, title_id, content, images) VALUES (:user_id, :title_id, :content, :images)';
 
@@ -21,8 +22,6 @@ try {
 
     if (move_uploaded_file($_FILES['img']['tmp_name'], $targetFilePath)) {
         $images = $targetFilePath; // 保存した画像のパスを取得
-    } else {
-        throw new Exception('画像のアップロードに失敗しました');
     }
 
     $stm = $pdo->prepare($sql);

@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ]);
     
     if ($success) {
-        header("Location: welcome.php");
+        header("Location: ../top.html");
         exit();
     } else {
         echo "データベースの更新に失敗しました。<br>";
