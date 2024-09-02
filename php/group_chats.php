@@ -184,7 +184,7 @@ $available_users = $stmt_exclude_users->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>グループチャット</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/groupchat.css.css">
     <style>
          body {
     font-family: Arial, sans-serif;
