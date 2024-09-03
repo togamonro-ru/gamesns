@@ -1,8 +1,7 @@
 <?php
 require_once '../db_connect.php'; // $pdoを使用
 
-session_start();
-$user_id = $_SESSION['user_id'];
+$user_id = $_GET['user_id'];
 
 // プロフィール画像を取得
 $sql = "SELECT profile_image FROM profiles WHERE user_id = :user_id";

@@ -12,6 +12,13 @@ header('Content-Type: application/json');
 $user_id = $_SESSION['user_id'];
 $title_id = 1;
 $images = "";
+$maxContentLength = 200;
+
+$content = $_POST['content'];
+if (mb_strlen($content) > $maxContentLength) {
+    echo json_encode(['status' => 'error', 'message' => '内容が最大許容文字数の ' . $maxContentLength . ' 文字を超えています。']);
+    exit();
+}
 
 $sql = 'INSERT INTO posts (user_id, title_id, content, images) VALUES (:user_id, :title_id, :content, :images)';
 
@@ -27,7 +34,7 @@ try {
     $stm = $pdo->prepare($sql);
     $stm->bindValue(':user_id', $user_id, PDO::PARAM_INT);
     $stm->bindValue(':title_id', $title_id, PDO::PARAM_INT);
-    $stm->bindValue(':content', $_POST['content'], PDO::PARAM_STR);
+    $stm->bindValue(':content', $content, PDO::PARAM_STR);
     $stm->bindValue(':images', $images, PDO::PARAM_STR);
     $stm->execute();
 
