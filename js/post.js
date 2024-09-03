@@ -48,8 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const maxLength = textarea.maxLength;
-        const currentLength = textarea.value.length;
+        const maxLength = 200;
+        let currentLength = [...textarea.value].length;
+        console.log(textarea.value.length)
+        console.log([...textarea.value].length)
+
+        if (currentLength > maxLength) {
+            textarea.value = textarea.value.substring(0, maxLength); // 200文字を超えた分を削除
+            currentLength = maxLength; // 超えた場合の長さを修正
+        }
 
         charCount.textContent = `残り: ${maxLength - currentLength}文字`;
     }
