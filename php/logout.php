@@ -1,15 +1,23 @@
 <?php
-// logout.php
+session_start(); // セッションの開始
 
-session_start();
-session_unset();
+// セッション変数をすべてクリア
+$_SESSION = array();
+
+// セッションのクッキーがあれば削除
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// セッションを完全に破棄
 session_destroy();
 
-// ブラウザキャッシュを無効にする
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
-header("Location: ../login.html");
+// ログインページへリダイレクト
+header("Location: ../index.html");
 exit();
 ?>
+
