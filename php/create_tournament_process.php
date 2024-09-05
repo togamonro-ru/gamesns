@@ -1,5 +1,7 @@
 <?php
 require '../db_connect.php';
+session_start();
+$user_id = $_SESSION['user_id'];
 
 // POST メソッドで送信されたデータを受け取ります
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,13 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // データベースに大会を追加します
     $stmt = $pdo->prepare("
         INSERT INTO localtournaments (
-            name, description, start_date, end_date, Tournament_starts, people, created_at, updated_at, deleted_flag
+            user_id, name, description, start_date, end_date, Tournament_starts, people, created_at, updated_at, deleted_flag
         ) VALUES (
-            :name, :description, :registration_start, :registration_end, :tournament_start, :max_participants, NOW(), NOW(), 0
+            :user_id, :name, :description, :registration_start, :registration_end, :tournament_start, :max_participants, NOW(), NOW(), 0
         )
     ");
     
     $stmt->execute([
+        ':user_id' => $user_id,
         ':name' => $name,
         ':description' => $description,
         ':registration_start' => $registration_start,
