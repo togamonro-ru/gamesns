@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿ページ</title>
+    <link rel="stylesheet" href="./css/post.css">
+</head>
+<body>
+    <div class="border">
+        <header>
+            <h1><a href="top.html">←TOP</a></h1>
+        </header>
+        <main>
+            <form name="postForm" enctype="multipart/form-data">
+                <table>
+                    <tr>
+                        <td>
+                            <textarea class="content" name="content"></textarea>
+                            <div id="charCount">残り: 200文字</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="file" name="img" class="img"></td>
+                    </tr>
+                    <tr>
+                        <td class="submit"><input type="submit" value="投稿" class="btn"></td>
+                    </tr>
+                </table>
+            </form>
+        </main>
+    </div>
+    <script src="./js/post.js"></script>
+</body>
+</html>

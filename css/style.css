@@ -1,0 +1,142 @@
+/* 全体のスタイル設定 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(42, 42, 42);
+    overflow: auto; /* overflow を auto に設定してスクロールできるようにする */
+    color: white; /* テキストのデフォルトカラーを白に設定 */
+    font-family: Arial, sans-serif; /* 一般的なフォントファミリーの設定 */
+}
+
+/* ボーダーのアニメーション */
+.border {
+    padding: 1px;
+    border: 5px solid transparent; /* ボーダーの透明化とアニメーション適用のために透明に設定 */
+    border-image: linear-gradient(90deg, red, red, red, red, red, red, red); /* 初期状態のボーダー画像の設定 */
+    border-image-slice: 1 fill; /* ボーダーのスライス設定 */
+    animation: rainbow 10s linear infinite; /* アニメーションの設定 */
+    margin: 1px 0; /* 上下のマージンを少し広げて、上下の要素とのスペースを確保 */
+}
+
+/* レインボーアニメーション */
+@keyframes rainbow {
+    0% { border-image-source: linear-gradient(90deg, red, red, red, red, red, red, red); }
+    14.29% { border-image-source: linear-gradient(90deg, red, orange, orange, orange, orange, orange, orange); }
+    28.58% { border-image-source: linear-gradient(90deg, orange, yellow, yellow, yellow, yellow, yellow, yellow); }
+    42.87% { border-image-source: linear-gradient(90deg, yellow, green, green, green, green, green, green); }
+    57.16% { border-image-source: linear-gradient(90deg, green, blue, blue, blue, blue, blue, blue); }
+    71.45% { border-image-source: linear-gradient(90deg, blue, indigo, indigo, indigo, indigo, indigo, indigo); }
+    85.74% { border-image-source: linear-gradient(90deg, indigo, violet, violet, violet, violet, violet, violet); }
+    100% { border-image-source: linear-gradient(90deg, violet, red, red, red, red, red, red); }
+}
+
+/* テーブルのスタイル設定 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2c2c2c; /* テーブル全体の背景色を少し暗めのグレーに設定 */
+    color: white; /* テーブル内のテキストの色を白に設定 */
+    border-radius: 8px; /* テーブル全体の角を丸める */
+    overflow: hidden; /* テーブルの角を丸めるためにオーバーフローを隠す */
+}
+
+/* テーブルのヘッダー */
+th {
+    padding: 12px;
+    text-align: left;
+    background-color: #333; /* ヘッダーの背景色を少し暗い色に設定 */
+    border-bottom: 2px solid #444; /* ヘッダーの下に少し厚めのボーダーを追加 */
+}
+
+/* テーブルのデータセル */
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #555; /* データセルの下に細いボーダーを追加 */
+}
+
+/* ボタンのスタイル設定 */
+.button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #4CAF50; /* ボタンの背景色を緑に設定 */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
+    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+}
+
+.button:hover {
+    background-color: #45a049; /* ホバー時の背景色を少し濃い緑に設定 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+}
+
+/* リンクのスタイル設定 */
+a {
+    color: #1E90FF; /* リンクの色を青に設定 */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 削除ボタンのスタイル設定 */
+button {
+    background-color: #f44336; /* 削除ボタンの背景色を赤に設定 */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
+    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+}
+
+button:hover {
+    background-color: #e53935; /* ホバー時の背景色を少し濃い赤に設定 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+}
+
+/* フォームのテキストフィールド */
+input[type="text"], input[type="number"], input[type="date"], textarea {
+    background-color: #333; /* 背景色を暗めに設定 */
+    color: white; /* テキストカラーを白色に設定 */
+    border: 1px solid #555; /* ボーダーの色を少し明るい色に設定 */
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 入力フィールドに影を追加 */
+    transition: border-color 0.3s, box-shadow 0.3s; /* フォーカス時のアニメーション */
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus {
+    border-color: #4CAF50; /* フォーカス時のボーダー色を緑に設定 */
+    box-shadow: 0 0 4px rgba(76, 175, 80, 0.5); /* フォーカス時の影を緑に設定 */
+}
+
+/* フォームのサブミットボタン */
+input[type="submit"] {
+    background-color: #4CAF50; /* ボタンの背景色を緑に設定 */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
+    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* ホバー時の背景色を少し濃い緑に設定 */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+}
+
+/* フォームのラベル */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white; /* ラベルのテキストカラーを白に設定 */
+}
