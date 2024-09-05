@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(42, 42, 42);
+    overflow-x: hidden;
+}
+
+.border{
+    padding: 20px;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    animation: rainbow 10s linear infinite;
+    height: 588px;
+}
+
+@keyframes rainbow {
+    0% { border-image-source: linear-gradient(90deg, red, red, red, red, red, red, red); }
+    14.29% { border-image-source: linear-gradient(90deg, red, orange, orange, orange, orange, orange, orange); }
+    28.58% { border-image-source: linear-gradient(90deg, orange, yellow, yellow, yellow, yellow, yellow, yellow); }
+    42.87% { border-image-source: linear-gradient(90deg, yellow, green, green, green, green, green, green); }
+    57.16% { border-image-source: linear-gradient(90deg, green, blue, blue, blue, blue, blue, blue); }
+    71.45% { border-image-source: linear-gradient(90deg, blue, indigo, indigo, indigo, indigo, indigo, indigo); }
+    85.74% { border-image-source: linear-gradient(90deg, indigo, violet, violet, violet, violet, violet, violet); }
+    100% { border-image-source: linear-gradient(90deg, violet, red, red, red, red, red, red); }
+}
+
+td{
+    color: white;
+}
+
+.knkn{
+    overflow: auto;
+}
