@@ -4,12 +4,12 @@
     //パスワード
     $pass = "";
     //データベース名
-    $database = "localtournaments";
+    $database = "game_sns";
     //サーバー
     $server = "localhost:3308";
 
     //DSN文字列の生成
-    $dsn = "mysql:host={$server};dbname={$database};charset=utf8";
+    $dsn = "mysql:host={$server};dbname={$database};charset=utf8mb4";
 
     //mysqlデータベースへの接続
     try {

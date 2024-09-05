@@ -1,24 +1,19 @@
-/* 全体のスタイル設定 */
 body {
     margin: 0;
     padding: 0;
     background-color: rgb(42, 42, 42);
-    overflow: auto; /* overflow を auto に設定してスクロールできるようにする */
-    color: white; /* テキストのデフォルトカラーを白に設定 */
-    font-family: Arial, sans-serif; /* 一般的なフォントファミリーの設定 */
+    overflow-x: hidden;
 }
 
-/* ボーダーのアニメーション */
-.border {
-    padding: 1px;
-    border: 5px solid transparent; /* ボーダーの透明化とアニメーション適用のために透明に設定 */
-    border-image: linear-gradient(90deg, red, red, red, red, red, red, red); /* 初期状態のボーダー画像の設定 */
-    border-image-slice: 1 fill; /* ボーダーのスライス設定 */
-    animation: rainbow 10s linear infinite; /* アニメーションの設定 */
-    margin: 1px 0; /* 上下のマージンを少し広げて、上下の要素とのスペースを確保 */
+.border{
+    padding: 20px;
+    border: 5px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    animation: rainbow 10s linear infinite;
+    height: 588px;
 }
 
-/* レインボーアニメーション */
 @keyframes rainbow {
     0% { border-image-source: linear-gradient(90deg, red, red, red, red, red, red, red); }
     14.29% { border-image-source: linear-gradient(90deg, red, orange, orange, orange, orange, orange, orange); }
@@ -30,113 +25,139 @@ body {
     100% { border-image-source: linear-gradient(90deg, violet, red, red, red, red, red, red); }
 }
 
-/* テーブルのスタイル設定 */
-table {
+header{
+    border-bottom: 2px solid #ffffff;
     width: 100%;
-    border-collapse: collapse;
-    background-color: #2c2c2c; /* テーブル全体の背景色を少し暗めのグレーに設定 */
-    color: white; /* テーブル内のテキストの色を白に設定 */
-    border-radius: 8px; /* テーブル全体の角を丸める */
-    overflow: hidden; /* テーブルの角を丸めるためにオーバーフローを隠す */
 }
 
-/* テーブルのヘッダー */
-th {
-    padding: 12px;
-    text-align: left;
-    background-color: #333; /* ヘッダーの背景色を少し暗い色に設定 */
-    border-bottom: 2px solid #444; /* ヘッダーの下に少し厚めのボーダーを追加 */
+nav{
+    margin-bottom: 30px;
 }
 
-/* テーブルのデータセル */
-td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #555; /* データセルの下に細いボーダーを追加 */
+ul{
+    display: flex;
+    justify-content: space-around;
 }
 
-/* ボタンのスタイル設定 */
-.button {
-    padding: 10px 15px;
-    border: none;
-    background-color: #4CAF50; /* ボタンの背景色を緑に設定 */
+a{
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
-    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
 }
 
-.button:hover {
-    background-color: #45a049; /* ホバー時の背景色を少し濃い緑に設定 */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+li{
+    list-style: none;
 }
 
-/* リンクのスタイル設定 */
-a {
-    color: #1E90FF; /* リンクの色を青に設定 */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* 削除ボタンのスタイル設定 */
-button {
-    background-color: #f44336; /* 削除ボタンの背景色を赤に設定 */
+.links{
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    font-size: 30px;
+}
+
+input{
+    height: 24px;
+}
+
+.search-btn{
+    height: 30px;
+}
+
+main{
+    height: 500px;
+    overflow: auto;
+}
+
+main::-webkit-scrollbar{
+    display:none;
+  }
+
+.post {
+    background-color: #333; /* 背景色を暗く設定 */
+    color: #fff; /* テキストの色を白に設定 */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username {
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
-    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+    flex-grow: 1;
 }
 
-button:hover {
-    background-color: #e53935; /* ホバー時の背景色を少し濃い赤に設定 */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+.timestamp {
+    font-size: 12px;
+    color: #999;
 }
 
-/* フォームのテキストフィールド */
-input[type="text"], input[type="number"], input[type="date"], textarea {
-    background-color: #333; /* 背景色を暗めに設定 */
-    color: white; /* テキストカラーを白色に設定 */
-    border: 1px solid #555; /* ボーダーの色を少し明るい色に設定 */
-    padding: 8px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 入力フィールドに影を追加 */
-    transition: border-color 0.3s, box-shadow 0.3s; /* フォーカス時のアニメーション */
+.post-content {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    margin-left: 30px;
+    margin-right: 30px;
+    word-break: break-word;
 }
 
-input[type="text"]:focus, input[type="number"]:focus, input[type="date"]:focus, textarea:focus {
-    border-color: #4CAF50; /* フォーカス時のボーダー色を緑に設定 */
-    box-shadow: 0 0 4px rgba(76, 175, 80, 0.5); /* フォーカス時の影を緑に設定 */
+.post-footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
 }
 
-/* フォームのサブミットボタン */
-input[type="submit"] {
-    background-color: #4CAF50; /* ボタンの背景色を緑に設定 */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ボタンに影を追加して立体感を出す */
-    transition: background-color 0.3s, box-shadow 0.3s; /* ホバー時のアニメーション */
+.icon {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049; /* ホバー時の背景色を少し濃い緑に設定 */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* ホバー時の影を少し強くする */
+.icon img {
+    width: 16px; /* 画像のサイズを指定 */
+    height: 16px;
+    margin-right: 5px;
 }
 
-/* フォームのラベル */
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: white; /* ラベルのテキストカラーを白に設定 */
+.post_linkbtn{
+    position: absolute;
+    bottom: 70px;
+    right: 40px;
+    border: 3px solid #FF00D6;
+    background-color: #ffffff;
+    font-size: 20px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+
+.post-image{
+    text-align: center;
+    margin: 20px;
+}
+
+.postimg{
+    width: 600px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.profileimg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }

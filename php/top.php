@@ -1,6 +1,12 @@
 <?php
 require_once '../db_connect.php'; // $pdoを使用
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../index.html");
+    exit();
+}
+
 $lastPostAt = $_GET['lastPostAt'];
 
 // 投稿を取得
