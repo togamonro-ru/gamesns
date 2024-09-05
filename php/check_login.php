@@ -141,7 +141,7 @@ h1 {
         <div class="error-message">
             <?php echo $error_message; ?>
         </div>
-        <a href="login.html" class="back-link">戻る</a>
+        <a href="../index.html" class="back-link">戻る</a>
     <?php endif; ?>
 </body>
 </html>
